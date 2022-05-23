@@ -1,0 +1,3 @@
+Black screen
+Text fade in
+""

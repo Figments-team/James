@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/WhiteDot.svg-40cc7f2fb145faa2becc16033a7cf7cf.image"
+
+[deps]
+
+source_file="res://Assets/Images/WhiteDot.svg"
+dest_files=[ "res://.import/WhiteDot.svg-40cc7f2fb145faa2becc16033a7cf7cf.image" ]
+
+[params]
+

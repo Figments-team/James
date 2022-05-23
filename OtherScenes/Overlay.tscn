@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ObjectScenes/Loading.tscn" type="PackedScene" id=1]
+[ext_resource path="res://OtherScenes/Overlay.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "BlackPanelFadeIn"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("BlackPanel:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "BlackPanelFadeOut"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("BlackPanel:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="Overlay" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+script = ExtResource( 2 )
+
+[node name="PanelAnimator" type="AnimationPlayer" parent="."]
+anims/BlackPanelFadeIn = SubResource( 1 )
+anims/BlackPanelFadeOut = SubResource( 2 )
+
+[node name="BlackPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Loading" parent="." instance=ExtResource( 1 )]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = 80.0
