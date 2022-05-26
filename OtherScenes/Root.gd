@@ -4,16 +4,11 @@ var scene
 var sceneLoader
 signal load_finished
 
-var useLoadAnimation
-
 func _ready():
 	set_process(false)
 
-func loadScene(scenePath, useLoadAnim = false):
-	useLoadAnimation = useLoadAnim
+func loadScene(scenePath):
 	sceneLoader = ResourceLoader.load_interactive(scenePath)
-	if(useLoadAnimation):
-		Overlay.showLoader()
 	set_process(true)
 
 func _process(delta):
@@ -23,14 +18,13 @@ func _process(delta):
 		if(loadedScene != null):
 			scene = loadedScene.instance()
 			self.add_child(scene)
-		if(useLoadAnimation):
-			Overlay.hideLoader()
 		emit_signal("load_finished")
 
-func unloadScene(sceneName):
-	for child in get_children():
-		if(child.name == sceneName):
-			child.queue_free()
+func unloadScene(sceneName = (scene.name if scene != null else null)):
+	if(sceneName != null):
+		for child in get_children():
+			if(child.name == sceneName):
+				child.queue_free()
 
 func unloadAll():
 	for child in get_children():

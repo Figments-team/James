@@ -36,32 +36,47 @@ func searchChildrenOfType(children, type):
 	return foundChildren
 
 func wait(seconds):
-	return get_tree().create_timer(seconds)
+	yield(get_tree().create_timer(seconds), "timeout")
+
+func loadAndAdd(scenePath, useLoader = false):
+	if(useLoader):
+		Overlay.showLoader()
+	Root.loadScene(scenePath) # Load scene
+	yield(Root, "load_finished") # Wait for scene to load
+	if(useLoader):
+		Overlay.hideLoader()
+
+func loadAndReplace(scenePath, useLoader = false):
+	if(useLoader):
+		Overlay.showLoader()
+	Root.unloadScene() # Unload previous scene
+	Root.loadScene(scenePath) # Load scene
+	yield(Root, "load_finished") # Wait for scene to load
+	if(useLoader):
+		Overlay.hideLoader()
+
+func directScene():
+	yield(Root.scene.self_direction(), "completed") # Wait for self direction
+
+func fadeIn():
+	Overlay.fadeInBlack() # Start fade in to black
+	yield(Overlay, "fade_finished") # Wait for animation
+
+func fadeOut():
+	Overlay.fadeOutBlack() # Start fade out from black
+	yield(Overlay, "fade_finished") # Wait for animation
 
 ##############
 ## Routines ##
 ##############
 
 func gameOpening():
-	Root.loadScene("res://MainScenes/Splash.tscn") # Load Splash
-	yield(Root, "load_finished") # Wait for Splash loading
-	
-	yield(Director.wait(1), "timeout")
-	
-	Overlay.fadeOutBlack() # Start fade out from black
-	yield(Overlay, "fade_finished") # Wait for animation
-	
-	yield(Root.scene.self_direction(), "completed") # Wait for self direction
-	
-	Overlay.fadeInBlack() # Start fade in to black
-	yield(Overlay, "fade_finished") # Wait for animation
-	
-	Root.unloadScene("Splash")
-	Root.loadScene("res://MainScenes/MainMenu.tscn") # Load MainMenu
-	yield(Root, "load_finished") # Wait for MainMenu loading
-	
-	yield(Director.wait(1), "timeout")
-	
+	yield(loadAndReplace("res://MainScenes/Splash.tscn"), "completed")
+	yield(wait(1), "completed")
+	yield(fadeOut(), "completed")
+	yield(directScene(), "completed")
+	yield(fadeIn(), "completed")
+	yield(loadAndReplace("res://MainScenes/MainMenu.tscn"), "completed")
+	yield(wait(1), "completed")
 	BGM.playLooped("res://Assets/Music/Who James is.wav")
-	Overlay.fadeOutBlack() # Start fade out from black
-	yield(Overlay, "fade_finished") # Wait for animation
+	yield(fadeOut(), "completed")
