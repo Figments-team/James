@@ -51,7 +51,7 @@ func gameOpening():
 	Overlay.fadeOutBlack() # Start fade out from black
 	yield(Overlay, "fade_finished") # Wait for animation
 	
-	yield(Root.sceneInstance.self_direction(), "completed") # Wait for self direction
+	yield(Root.scene.self_direction(), "completed") # Wait for self direction
 	
 	Overlay.fadeInBlack() # Start fade in to black
 	yield(Overlay, "fade_finished") # Wait for animation
