@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Fonts/victorian_parlor/Victorian Parlor Vintage Alternate_free.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainScenes/Splash.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "SplashLogo1FadeOut"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Label:modulate:a")
@@ -16,10 +16,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 )
 }
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 80
 font_data = ExtResource( 1 )
 
@@ -32,12 +32,12 @@ __meta__ = {
 }
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-anims/SplashLogo1FadeOut = SubResource( 2 )
+anims/SplashLogo1FadeOut = SubResource( 1 )
 
 [node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -51,7 +51,7 @@ margin_left = -189.5
 margin_top = -40.0
 margin_right = 189.5
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "a Figments tale"
 __meta__ = {
 "_edit_use_anchors_": false
