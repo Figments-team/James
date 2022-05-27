@@ -16,9 +16,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-BGM="*res://OtherScenes/BGM.tscn"
-Overlay="*res://OtherScenes/Overlay.tscn"
 Director="*res://OtherScenes/Director.tscn"
+Overlay="*res://OtherScenes/Overlay.tscn"
 
 [display]
 

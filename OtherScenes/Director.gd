@@ -59,12 +59,13 @@ func directScene():
 	yield(Root.scene.self_direction(), "completed") # Wait for self direction
 
 func fadeIn():
-	Overlay.fadeInBlack() # Start fade in to black
-	yield(Overlay, "fade_finished") # Wait for animation
+	yield(Overlay.fadeInBlack(), "completed") # Start fade in to black and wait
 
 func fadeOut():
-	Overlay.fadeOutBlack() # Start fade out from black
-	yield(Overlay, "fade_finished") # Wait for animation
+	yield(Overlay.fadeOutBlack(), "completed") # Start fade out from black and wait
+
+func playMusic(path):
+	Overlay.playMusic(path)
 
 ##############
 ## Routines ##
@@ -78,5 +79,5 @@ func gameOpening():
 	yield(fadeIn(), "completed")
 	yield(loadAndReplace("res://MainScenes/MainMenu.tscn"), "completed")
 	yield(wait(1), "completed")
-	BGM.playLooped("res://Assets/Music/Who James is.wav")
+	playMusic("res://Assets/Music/Who James is.wav")
 	yield(fadeOut(), "completed")
