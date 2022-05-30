@@ -1,6 +1,6 @@
 extends Control
 
 func self_direction():
-	yield(Director.wait(2), "completed")
+	pass
 	#$"Animator".play("SplashLogo1FadeOut")
 	#yield($"Animator", "animation_finished")

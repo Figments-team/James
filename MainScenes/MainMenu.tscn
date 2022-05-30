@@ -7,8 +7,8 @@
 [ext_resource path="res://Assets/Images/GreyCity.jpg" type="Texture" id=5]
 [ext_resource path="res://MainScenes/MainMenu.gd" type="Script" id=6]
 
-[sub_resource type="Animation" id=7]
-resource_name = "MenuFadeIn"
+[sub_resource type="Animation" id=1]
+resource_name = "SelfDirection"
 length = 2.0
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("PressAnyKey:modulate:a")
@@ -40,8 +40,22 @@ tracks/2/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0.5, 1.5 )
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("LabelAnimator")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "PressAnyKeyFade", -1, 1.0, false ],
+"method": "play"
+} ]
+}
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "bezier"
@@ -55,10 +69,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2 )
 }
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=5]
 trail_divisor = 5
 emission_shape = 2
 emission_box_extents = Vector3( 750, 1, 1 )
@@ -69,15 +83,15 @@ orbit_velocity_random = 0.0
 scale = 4.0
 color = Color( 0.392157, 0.392157, 0.392157, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 size = 130
 use_filter = true
 font_data = ExtResource( 1 )
@@ -90,16 +104,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuAnimator" type="AnimationPlayer" parent="."]
-anims/MenuFadeIn = SubResource( 7 )
+[node name="SelfDirector" type="AnimationPlayer" parent="."]
+anims/SelfDirection = SubResource( 1 )
 
 [node name="LabelAnimator" type="AnimationPlayer" parent="."]
-anims/PressAnyKeyFade = SubResource( 1 )
+anims/PressAnyKeyFade = SubResource( 3 )
 
 [node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,7 +132,7 @@ position = Vector2( 800, -50 )
 amount = 1000
 lifetime = 4.0
 speed_scale = 2.0
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
 
 [node name="HouseAndWindow" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -139,7 +153,7 @@ margin_left = -105.0
 margin_top = -103.12
 margin_right = 105.0
 margin_bottom = -77.1201
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Press any key to continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -155,7 +169,7 @@ margin_left = -159.5
 margin_top = 36.72
 margin_right = 159.5
 margin_bottom = 87.72
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Figments:"
 align = 1
@@ -174,7 +188,7 @@ margin_left = -512.0
 margin_top = 76.0
 margin_right = 512.0
 margin_bottom = 222.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "JAMES"
 align = 1
 valign = 1
