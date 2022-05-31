@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://MainScenes/Splash.tscn", false ],
+"args": [ "res://MainScenes/Splash.tscn" ],
 "method": "loadScene"
 } ]
 }
@@ -29,7 +29,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 1.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "res://MainScenes/MainMenu.tscn", false ],
+"args": [ "res://MainScenes/MainMenu.tscn" ],
 "method": "loadScene"
 } ]
 }
@@ -44,10 +44,10 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "wait"
+"method": "waitForAsync"
 }, {
 "args": [  ],
-"method": "wait"
+"method": "waitForAsync"
 } ]
 }
 tracks/3/type = "method"
